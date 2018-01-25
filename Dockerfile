@@ -2,6 +2,8 @@ FROM debian:stretch
 
 ARG TINI_VERSION=0.16.1
 
+COPY sources.list /etc/apt/
+
 COPY gpg-recv-key.sh /usr/local/bin/gpg-recv-key
 
 RUN apt-get update && \
