@@ -7,6 +7,7 @@ COPY sources.list /etc/apt/
 COPY gpg-recv-key.sh /usr/local/bin/gpg-recv-key
 
 RUN apt-get update && \
+    apt-get full-upgrade -y && \
     apt-get install -y wget gnupg bzip2 curl aria2 && \
     rm -rf /var/lib/apt/lists/*
 
