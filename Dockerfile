@@ -1,5 +1,6 @@
 FROM debian:stretch
 
+ARG DISABLE_HETZNER_REPO=false
 ARG TINI_VERSION=0.16.1
 ARG CONTAINER_USER_UID=998
 ENV CONTAINER_USER_UID=$CONTAINER_USER_UID
@@ -7,10 +8,11 @@ ARG CONTAINER_USER_GID=998
 ENV CONTAINER_USER_GID=$CONTAINER_USER_GID
 
 COPY sources.list /etc/apt/
+COPY apt-update.sh /usr/local/sbin/apt-update
 
 COPY gpg-recv-key.sh /usr/local/bin/gpg-recv-key
 
-RUN apt-get update && \
+RUN apt-update && \
     apt-get full-upgrade -y && \
     apt-get install -y wget gnupg bzip2 curl aria2 && \
     rm -rf /var/lib/apt/lists/*
