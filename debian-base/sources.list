@@ -1,8 +1,0 @@
-# May be dynamically disabled by apt-update script
-deb http://mirror.hetzner.de/debian/packages stretch main
-deb http://mirror.hetzner.de/debian/security stretch/updates main
-deb http://mirror.hetzner.de/debian/packages stretch-updates main
-
-deb http://deb.debian.org/debian/ stretch          main
-deb http://deb.debian.org/debian/ stretch-updates  main
-deb http://security.debian.org/   stretch/updates  main

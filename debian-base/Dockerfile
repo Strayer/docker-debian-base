@@ -1,6 +1,7 @@
 FROM debian:stretch
 
-ARG DISABLE_HETZNER_REPO=false
+ARG ENABLE_HETZNER_REPO
+ARG APT_PROXY
 ARG TINI_VERSION=0.16.1
 ARG CONTAINER_USER_UID=998
 ENV CONTAINER_USER_UID=$CONTAINER_USER_UID
@@ -9,7 +10,7 @@ ENV CONTAINER_USER_GID=$CONTAINER_USER_GID
 
 ARG TINI_URL=https://github.com/krallin/tini/releases/download/v${TINI_VERSION}
 
-COPY sources.list /etc/apt/
+COPY sources.list-* /config/
 COPY apt-update.sh /usr/local/sbin/apt-update
 
 COPY gpg-recv-key.sh /usr/local/bin/gpg-recv-key

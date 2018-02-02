@@ -1,0 +1,3 @@
+deb http://mirror.hetzner.de/debian/packages stretch main
+deb http://mirror.hetzner.de/debian/security stretch/updates main
+deb http://mirror.hetzner.de/debian/packages stretch-updates main
