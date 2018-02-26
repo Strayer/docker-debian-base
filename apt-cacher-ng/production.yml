@@ -1,0 +1,10 @@
+version: "3.5"
+
+services:
+  apt-cacher-ng:
+    build:
+      args:
+        ENABLE_HETZNER_REPO: 1
+        APT_PROXY: http://apt-cacher-ng:3142
+      network: apt-cacher-ng
+    restart: always

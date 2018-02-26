@@ -1,0 +1,16 @@
+version: "3.5"
+
+volumes:
+  apt-cacher-ng-cache:
+
+networks:
+  apt-cacher-ng:
+    name: apt-cacher-ng
+
+services:
+  apt-cacher-ng:
+    build: .
+    networks:
+      - apt-cacher-ng
+    volumes:
+      - apt-cacher-ng-cache:/var/cache/apt-cacher-ng
