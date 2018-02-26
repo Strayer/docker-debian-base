@@ -4,7 +4,7 @@ services:
   apt-cacher-ng:
     build:
       args:
-        ENABLE_HETZNER_REPO: 1
-        APT_PROXY: http://apt-cacher-ng:3142
+        ENABLE_HETZNER_REPO: $ENABLE_HETZNER_REPO
+        APT_PROXY: $APT_PROXY
       network: apt-cacher-ng
     restart: always
