@@ -2,6 +2,7 @@ version: "3.5"
 
 volumes:
   apt-cacher-ng-cache:
+  apt-cacher-ng-logs:
 
 networks:
   apt-cacher-ng:
