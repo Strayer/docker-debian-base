@@ -8,3 +8,5 @@ services:
         APT_PROXY: $APT_PROXY
       network: apt-cacher-ng
     restart: always
+    ports:
+      - 127.0.0.1:3142:3142
