@@ -14,3 +14,4 @@ services:
       - apt-cacher-ng
     volumes:
       - apt-cacher-ng-cache:/var/cache/apt-cacher-ng
+      - apt-cacher-ng-logs:/var/log/apt-cacher-ng

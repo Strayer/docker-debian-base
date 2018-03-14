@@ -21,13 +21,11 @@ COPY backends_* /etc/apt-cacher-ng
 RUN set -xe; \
   echo "Remap-sury_php: http://cached-sury_php ; file:backends_sury_php" >> /etc/apt-cacher-ng/acng.conf;
 
-# Force apt-cacher-ng to write logs to stderr/stdout
-RUN ln -sf /proc/1/fd/1 /var/log/apt-cacher-ng/apt-cacher.log && \
-    ln -sf /proc/1/fd/2 /var/log/apt-cacher-ng/apt-cacher.err
-
-VOLUME [ "/var/cache/apt-cacher-ng" ]
+VOLUME [ "/var/cache/apt-cacher-ng", "/var/log/apt-cacher-ng/" ]
 EXPOSE 3142
 
 USER apt-cacher-ng
 
-CMD ["apt-cacher-ng", "-c", "/etc/apt-cacher-ng"]
+COPY start.sh /usr/local/bin/
+
+CMD ["start.sh"]
