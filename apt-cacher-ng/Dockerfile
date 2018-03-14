@@ -16,6 +16,11 @@ RUN sed -i "s/# ForeGround: 0/ForeGround: 1/" /etc/apt-cacher-ng/acng.conf && \
 RUN sed -i "s_# VfilePatternEx:_VfilePatternEx: (/alpine/.*APKINDEX\\\\.tar\\\\.gz)_" /etc/apt-cacher-ng/acng.conf && \
     sed -i "s_# PfilePatternEx:_PfilePatternEx: (/alpine/.*\\\\.apk)_" /etc/apt-cacher-ng/acng.conf
 
+# Add custom remaps
+COPY backends_* /etc/apt-cacher-ng
+RUN set -xe; \
+  echo "Remap-sury_php: http://cached-sury_php ; file:backends_sury_php" >> /etc/apt-cacher-ng/acng.conf;
+
 # Force apt-cacher-ng to write logs to stderr/stdout
 RUN ln -sf /proc/1/fd/1 /var/log/apt-cacher-ng/apt-cacher.log && \
     ln -sf /proc/1/fd/2 /var/log/apt-cacher-ng/apt-cacher.err
