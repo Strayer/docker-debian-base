@@ -10,10 +10,13 @@ ENV CONTAINER_USER_GID=$CONTAINER_USER_GID
 
 ARG TINI_URL=https://github.com/krallin/tini/releases/download/v${TINI_VERSION}
 
-COPY sources.list-* /config/
+COPY sources.list /etc/apt/sources.list
 COPY apt-update.sh /usr/local/sbin/apt-update
 
 COPY gpg-recv-key.sh /usr/local/bin/gpg-recv-key
+
+RUN echo 'Dir::Ignore-Files-Silently:: "(.__apt_proxy_backup)$";' \
+    > /etc/apt/apt.conf.d/99_ignore-apt-proxy-backup
 
 RUN apt-update && \
     apt-get full-upgrade -y && \

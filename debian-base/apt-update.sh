@@ -1,41 +1,51 @@
-#!/usr/bin/env sh
-set -e
+#!/usr/bin/env bash
+set -eo pipefail
 
-# Always use default stretch sources.list
-cp /config/sources.list-stretch /etc/apt/sources.list
+enable_apt_proxy_for_file() {
+  if test ! -e $2__apt_proxy_backup; then
+    cp $2 $2__apt_proxy_backup
+    sed -i "s_deb[[:space:]]*http://_deb $1_" $2
+    sed -i "s_deb[[:space:]]*https://_deb $1HTTPS///_" $2
+  fi
+}
 
-# Copy over additional sources
-if test -n "$(find /docker/sources.list.d -maxdepth 1 -name '*.list' -print -quit 2>/dev/null)"; then
-  cp /docker/sources.list.d/*.list /etc/apt/sources.list.d/
-fi
-
-# Local Hetzner repositories (not publicly accessible)
-case $ENABLE_HETZNER_REPO in
-  1|true)
-    echo "Using Hetzner apt mirror"
-    cat /config/sources.list-hetzner > /etc/apt/sources.list
-    cat /config/sources.list-stretch >> /etc/apt/sources.list
-  ;;
-  *) true ;;
-esac
+reset_apt_proxy_for_file() {
+  if test -e "$1__apt_proxy_backup"; then
+    mv "$1__apt_proxy_backup" "$1"
+  fi
+}
 
 case $APT_PROXY in
   (*[![:blank:]]*)
     cleaned_apt_proxy=`echo ${APT_PROXY} | sed "s:/*$:/:"`
     echo "Using apt proxy: $cleaned_apt_proxy"
-    sed -i "s_deb[[:space:]]*http://_deb ${cleaned_apt_proxy}_" /etc/apt/sources.list
+    enable_apt_proxy_for_file "$cleaned_apt_proxy" "/etc/apt/sources.list"
 
-    # put APT_PROXY in docker managed sources.list.d lists
-    # changing other source lists will cause them to not reset when run without
-    # APT_PROXY later, since only those in /docker/sources.list.d always get
-    # reset when this script runs
     if test -n "$(find /etc/apt/sources.list.d -maxdepth 1 -name '*.list' -print -quit)"; then
       for file in /etc/apt/sources.list.d/*.list; do
-        if test -e /docker/sources.list.d/${file##*/}; then
-          sed -r -i "s;deb[[:space:]]*https?://packages.sury.org/php/?;deb ${cleaned_apt_proxy}cached-sury_php;" $file
-        fi
+        enable_apt_proxy_for_file "$cleaned_apt_proxy" "$file"
       done
     fi
+  ;;
+  *)
+    reset_apt_proxy_for_file "/etc/apt/sources.list"
+
+    if test -n "$(find /etc/apt/sources.list.d -maxdepth 1 -name '*.list' -print -quit)"; then
+      for file in /etc/apt/sources.list.d/*.list; do
+        reset_apt_proxy_for_file "$file"
+      done
+    fi
+  ;;
+esac
+
+# Local Hetzner repositories (not publicly accessible)
+case $ENABLE_HETZNER_REPO in
+  1|true)
+    echo "Enabling Hetzner apt mirror"
+    sed -i "s_^# deb http://\(.*\)mirror.hetzner.de/_deb http://\\1mirror.hetzner.de/_" /etc/apt/sources.list
+  ;;
+  *)
+    sed -i "s_^deb http://\(.*\)mirror.hetzner.de/_# deb http://\\1mirror.hetzner.de/_" /etc/apt/sources.list
   ;;
 esac
 
