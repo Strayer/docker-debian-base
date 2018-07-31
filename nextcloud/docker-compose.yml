@@ -1,0 +1,72 @@
+version: "3.5"
+
+services:
+  nextcloud:
+    image: local/nextcloud
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - /mnt/nextcloud-data:/srv/data
+      - /mnt/docker-volumes/nextcloud-custom_apps:/srv/custom_apps
+    environment:
+      - NEXTCLOUD_INSTANCE_ID
+      - NEXTCLOUD_PASSWORD_SALT
+      - NEXTCLOUD_SECRET
+      - NEXTCLOUD_TRUSTED_DOMAINS
+      - NEXTCLOUD_OVERWRITE_CLI_URL
+      - NEXTCLOUD_DB_PASSWORD
+      - NEXTCLOUD_MAIL_DOMAIN
+      - NEXTCLOUD_MAIL_FROM_ADDRESS
+      - NEXTCLOUD_MAIL_SMTPMODE
+      - NEXTCLOUD_MAIL_SMTPHOST
+      - NEXTCLOUD_MAIL_SMTPPORT
+      - NEXTCLOUD_MAIL_SMTPSECURE
+      - NEXTCLOUD_MAIL_SMTPAUTH
+      - NEXTCLOUD_MAIL_SMTPAUTHTYPE
+      - NEXTCLOUD_MAIL_SMTPNAME
+      - NEXTCLOUD_MAIL_SMTPPASSWORD
+  nginx:
+    image: local/nextcloud
+    command: nginx
+    depends_on:
+      - nextcloud
+    ports:
+      - 127.0.0.1:8000:8000
+    volumes:
+      - /mnt/docker-volumes/nextcloud-custom_apps:/srv/custom_apps
+  cron:
+    image: local/nextcloud
+    depends_on:
+      - nginx
+      - nextcloud
+    command: cron
+    environment:
+      - NEXTCLOUD_INSTANCE_ID
+      - NEXTCLOUD_PASSWORD_SALT
+      - NEXTCLOUD_SECRET
+      - NEXTCLOUD_TRUSTED_DOMAINS
+      - NEXTCLOUD_OVERWRITE_CLI_URL
+      - NEXTCLOUD_DB_PASSWORD
+      - NEXTCLOUD_MAIL_DOMAIN
+      - NEXTCLOUD_MAIL_FROM_ADDRESS
+      - NEXTCLOUD_MAIL_SMTPMODE
+      - NEXTCLOUD_MAIL_SMTPHOST
+      - NEXTCLOUD_MAIL_SMTPPORT
+      - NEXTCLOUD_MAIL_SMTPSECURE
+      - NEXTCLOUD_MAIL_SMTPAUTH
+      - NEXTCLOUD_MAIL_SMTPAUTHTYPE
+      - NEXTCLOUD_MAIL_SMTPNAME
+      - NEXTCLOUD_MAIL_SMTPPASSWORD
+    volumes:
+      - /mnt/nextcloud-data:/srv/data
+      - /mnt/docker-volumes/nextcloud-custom_apps:/srv/custom_apps
+  redis:
+    image: redis:alpine
+    command: redis-server --appendonly yes
+  db:
+    image: postgres:9.6-alpine
+    environment:
+      POSTGRES_USER: nextcloud
+      POSTGRES_PASSWORD: $NEXTCLOUD_DB_PASSWORD
+      POSTGRES_DB: nextcloud
