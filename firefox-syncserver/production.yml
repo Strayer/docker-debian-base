@@ -1,0 +1,12 @@
+version: "3.5"
+
+services:
+  syncserver:
+    build:
+      args:
+        ENABLE_HETZNER_REPO: $ENABLE_HETZNER_REPO
+        APT_PROXY: $APT_PROXY
+      network: apt-cacher-ng
+    restart: always
+  db:
+    restart: always

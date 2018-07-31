@@ -29,6 +29,9 @@ RUN curl -LOO "${TINI_URL}/{tini-amd64,tini-amd64.asc}" && \
     rm tini-amd64.asc trustedkeys.gpg && \
     rm -rf /root/.gnupg
 
+ENV TZ=Europe/Berlin
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 COPY create-user.sh /usr/local/bin/create-user
 
 ENTRYPOINT ["tini", "--"]
