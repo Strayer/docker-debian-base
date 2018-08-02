@@ -25,4 +25,10 @@ services:
       options:
         max-size: "50m"
         max-file: "2"
+  redis:
+    restart: unless-stopped
+    logging:
+      options:
+        max-size: "50m"
+        max-file: "2"
 
