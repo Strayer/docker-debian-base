@@ -1,0 +1,20 @@
+version: "3.5"
+
+networks:
+  ipv6-nat:
+    external: true
+
+services:
+  syncthing:
+    build:
+      args:
+        ENABLE_HETZNER_REPO: $ENABLE_HETZNER_REPO
+        APT_PROXY: $APT_PROXY
+      network: apt-cacher-ng
+    restart: unless-stopped
+    volumes:
+      - /mnt/syncthing-sync-folders:/var/lib/syncthing/sync-folders
+    networks:
+      ipv6-nat:
+        ipv4_address: 172.18.51.1
+        ipv6_address: fcdd:1::51:1
