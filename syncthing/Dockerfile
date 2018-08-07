@@ -34,4 +34,4 @@ EXPOSE 8384 22000 21027/udp
 ENV STNOUPGRADE=1
 ENV STNODEFAULTFOLDER=1
 
-CMD [ "syncthing", "-home", "$WORKDIR/config", "-gui-address", "0.0.0.0:8384" ]
+CMD [ "syncthing", "-home", "config", "-gui-address", "0.0.0.0:8384" ]
