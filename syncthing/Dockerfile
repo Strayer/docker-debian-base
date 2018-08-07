@@ -29,6 +29,9 @@ USER syncthing
 
 WORKDIR $WORKDIR
 
+# Ensure correct volume permissions
+RUN mkdir $WORKDIR/config && chown syncthing:syncthing $WORKDIR/config
+
 EXPOSE 8384 22000 21027/udp
 
 ENV STNOUPGRADE=1
