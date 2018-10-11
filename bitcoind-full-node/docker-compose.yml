@@ -1,0 +1,14 @@
+version: "3.5"
+
+services:
+  bitcoind:
+    restart: unless-stopped
+    build: .
+    volumes:
+      - ./data:/data
+    ports:
+      - 8333
+    logging:
+      options:
+        max-size: "50m"
+        max-file: "2"
