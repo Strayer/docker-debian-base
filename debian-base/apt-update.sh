@@ -2,10 +2,10 @@
 set -eo pipefail
 
 enable_apt_proxy_for_file() {
-  if test ! -e $2__apt_proxy_backup; then
-    cp $2 $2__apt_proxy_backup
-    sed -i "s_deb[[:space:]]*http://_deb $1_" $2
-    sed -i "s_deb[[:space:]]*https://_deb $1HTTPS///_" $2
+  if test ! -e "$2__apt_proxy_backup"; then
+    cp "$2" "$2__apt_proxy_backup"
+    sed -i "s_deb[[:space:]]*http://_deb $1_" "$2"
+    sed -i "s_deb[[:space:]]*https://_deb $1HTTPS///_" "$2"
   fi
 }
 
@@ -17,7 +17,10 @@ reset_apt_proxy_for_file() {
 
 case $APT_PROXY in
   (*[![:blank:]]*)
-    cleaned_apt_proxy=`echo ${APT_PROXY} | sed "s:/*$:/:"`
+    # Make sure there is exactly one / at the end of the APT_PROXY URL
+    # shellcheck disable=SC2001
+    cleaned_apt_proxy=$(echo "${APT_PROXY}" | sed "s:/*$:/:")
+
     echo "Using apt proxy: $cleaned_apt_proxy"
     enable_apt_proxy_for_file "$cleaned_apt_proxy" "/etc/apt/sources.list"
 
@@ -42,9 +45,11 @@ esac
 case $ENABLE_HETZNER_REPO in
   1|true)
     echo "Enabling Hetzner apt mirror"
+    # shellcheck disable=SC1117
     sed -i "s_^# deb http://\(.*\)mirror.hetzner.de/_deb http://\\1mirror.hetzner.de/_" /etc/apt/sources.list
   ;;
   *)
+    # shellcheck disable=SC1117
     sed -i "s_^deb http://\(.*\)mirror.hetzner.de/_# deb http://\\1mirror.hetzner.de/_" /etc/apt/sources.list
   ;;
 esac
