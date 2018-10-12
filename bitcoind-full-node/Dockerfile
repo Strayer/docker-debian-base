@@ -21,7 +21,7 @@ COPY trustedkeys.gpg .
 RUN echo "Downloading Bitcoin Core…" && \
     curl -LO $BITCOIN_CORE && \
     curl -LO $BITCOIN_CORE_SIGS && \
-    gpgv --keyring `pwd`/trustedkeys.gpg SHA256SUMS.asc && \
+    gpgv --keyring "$(pwd)/trustedkeys.gpg" SHA256SUMS.asc && \
     tar xf $BITCOIN_CORE_TGZ --strip 1 && \
     rm $BITCOIN_CORE_TGZ SHA256SUMS.asc && \
     rm -rf /root/.gnupg

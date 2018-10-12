@@ -4,7 +4,7 @@ ARG ENABLE_HETZNER_REPO
 ARG APT_PROXY
 
 RUN apt-update && \
-    apt-get install -y apt-cacher-ng && \
+    apt-get install -y --no-install-recommends apt-cacher-ng && \
     rm -rf /var/lib/apt/lists/*
 
 RUN sed -i "s/# ForeGround: 0/ForeGround: 1/" /etc/apt-cacher-ng/acng.conf && \

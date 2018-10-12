@@ -23,7 +23,7 @@ RUN apt-update && \
 
 COPY trustedkeys.gpg .
 RUN curl -LOO "${TINI_URL}/{tini-amd64,tini-amd64.asc}" && \
-    gpgv --keyring `pwd`/trustedkeys.gpg tini-amd64.asc tini-amd64 && \
+    gpgv --keyring "$(pwd)/trustedkeys.gpg" tini-amd64.asc tini-amd64 && \
     mv tini-amd64 /usr/local/bin/tini && \
     chmod +x /usr/local/bin/tini && \
     rm tini-amd64.asc trustedkeys.gpg && \

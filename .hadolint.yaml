@@ -1,0 +1,3 @@
+ignored:
+  - DL3006  # Using latest as a base image is fine for me
+  - DL3008  # I don't want to pin apt package versions
