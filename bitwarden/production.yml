@@ -1,0 +1,7 @@
+version: "3.4"
+
+services:
+  bitwarden:
+    restart: unless-stopped
+    volumes:
+      - /mnt/docker-volumes/bitwarden:/data
