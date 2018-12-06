@@ -53,12 +53,6 @@ echo -e "\n\n###\napt-cacher-ng\n###\n\n" >&3
 compose build --force-rm >&3 2>&4
 compose up -d
 
-echo "==> Building syncthing"
-cd "$DIR/syncthing"
-echo -e "\n\n###\nsyncthing\n###\n\n" >&3
-compose build --force-rm >&3 2>&4
-compose up -d
-
 echo "==> Building firefox-syncserver"
 cd "$DIR/firefox-syncserver"
 echo -e "\n\n###\nfirefox-syncserver\n###\n\n" >&3
