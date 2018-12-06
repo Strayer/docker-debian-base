@@ -13,7 +13,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 exec 3>&1
 exec 4>&2
 
-if [ "$1" == "-h" ] || [ "$1" == "--help" ]; then
+if [ "${1:-}" == "-h" ] || [ "${1:-}" == "--help" ]; then
   echo "Usage: $(basename "${BASH_SOURCE[0]}") [--redirect-output]"
   exit 1;
 fi
@@ -24,7 +24,7 @@ if [ "$(id -u)" != "0" ]; then
   exit 1
 fi
 
-if [ "$1" == "--redirect-output" ]; then
+if [ "${1:-}" == "--redirect-output" ]; then
   echo "Redirecting build output to $LOG_FILE_BUILD"
   exec 3> "$LOG_FILE_BUILD"
   exec 4>&3
