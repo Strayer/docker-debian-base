@@ -68,7 +68,7 @@ compose up -d
 
 echo "==> Building fewo"
 cd "$DIR/fewo-unter-eichen"
-echo -e "\n\n###\fewo\n###\n\n" >&3
+echo -e "\n\n###\nfewo\n###\n\n" >&3
 compose pull >&3 2>&4
 compose build --force-rm >&3 2>&4
 compose up -d
