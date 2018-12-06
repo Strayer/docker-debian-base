@@ -10,8 +10,10 @@ services:
     env_file:
       - secrets.env
     networks:
-      - web
-    hostname: firefox-syncserver
+      default:
+      web:
+        aliases:
+          firefox-syncserver
     restart: unless-stopped
   db:
     env_file:
