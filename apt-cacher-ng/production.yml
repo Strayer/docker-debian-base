@@ -7,6 +7,6 @@ services:
         ENABLE_HETZNER_REPO: $ENABLE_HETZNER_REPO
         APT_PROXY: $APT_PROXY
       network: apt-cacher-ng
-    restart: always
+    restart: unless-stopped
     ports:
       - 127.0.0.1:3142:3142

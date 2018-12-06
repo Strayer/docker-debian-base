@@ -7,6 +7,10 @@ services:
         ENABLE_HETZNER_REPO: $ENABLE_HETZNER_REPO
         APT_PROXY: $APT_PROXY
       network: apt-cacher-ng
-    restart: always
+    env_file:
+      - secrets.env
+    restart: unless-stopped
   db:
-    restart: always
+    env_file:
+      - secrets_db.env
+    restart: unless-stopped
