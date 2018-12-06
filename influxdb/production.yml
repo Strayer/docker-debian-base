@@ -7,4 +7,4 @@ services:
       - web
     hostname: firefox-syncserver
     volumes:
-      - /mnt/docker-volumes/influxdb-data:/var/lib/influxdb
+      - /srv/docker/volumes/influxdb:/var/lib/influxdb
