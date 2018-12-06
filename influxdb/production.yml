@@ -1,0 +1,10 @@
+version: "3.6"
+
+services:
+  influxdb:
+    restart: unless-stopped
+    networks:
+      - web
+    hostname: firefox-syncserver
+    volumes:
+      - /mnt/docker-volumes/influxdb-data:/var/lib/influxdb

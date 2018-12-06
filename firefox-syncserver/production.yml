@@ -9,6 +9,9 @@ services:
       network: apt-cacher-ng
     env_file:
       - secrets.env
+    networks:
+      - web
+    hostname: firefox-syncserver
     restart: unless-stopped
   db:
     env_file:
