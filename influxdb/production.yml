@@ -1,5 +1,9 @@
 version: "3.6"
 
+networks:
+  web:
+    external: true
+
 services:
   influxdb:
     restart: unless-stopped
