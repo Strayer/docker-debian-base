@@ -73,6 +73,12 @@ echo -e "\n\n###\ninfluxdb\n###\n\n" >&3
 compose build --pull --no-cache --force-rm >&3 2>&4
 compose up -d
 
+echo "==> Building static-pages"
+cd "$DIR/static-pages"
+echo -e "\n\n###\nstatic-pages\n###\n\n" >&3
+compose build --pull --no-cache --force-rm >&3 2>&4
+compose up -d
+
 echo "==> Cleanup docker"
 docker image prune -f | grep -v "deleted: sha256:"
 

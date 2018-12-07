@@ -1,0 +1,52 @@
+https://keybase.io/strayer
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://grunewaldt.de
+  * I am strayer (https://keybase.io/strayer) on keybase.
+  * I have a public key ASDL-9eATKRsw97yAX7vxbrfC3_qs0jfB0yS_cbGm-TqAwo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0101b36a7da96b3f800f6fb84dedf4088615d070f17850b60825970bc4d482530f740a",
+      "host": "keybase.io",
+      "kid": "0120cbfbd7804ca46cc3def2017eefc5badf0b7feab348df074c92fdc6c69be4ea030a",
+      "uid": "16daf6f83cc228e8b25f99795c519719",
+      "username": "strayer"
+    },
+    "merkle_root": {
+      "ctime": 1507205295,
+      "hash": "6612a889dc93573dc4f35ade68d317a13fbf7c7070376113385066f3f1565789d955639edef77c8d3e10711ccf13640a332845e3eb8bacc91e49a4a346bbef9e",
+      "hash_meta": "2687ff4c9e9716cf571c64664161c79ef784173afcb1677a54578d7632bd7a36",
+      "seqno": 1511695
+    },
+    "service": {
+      "hostname": "grunewaldt.de",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "1.0.32"
+  },
+  "ctime": 1507205309,
+  "expire_in": 504576000,
+  "prev": "6481f990aef4d8e33c1ba4a4901ceffc2ec633a63f13f7ab20725616202c4136",
+  "seqno": 12,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgy/vXgEykbMPe8gF+78W63wt/6rNI3wdMkv3Gxpvk6gMKp3BheWxvYWTFA0V7ImJvZHkiOnsia2V5Ijp7ImVsZGVzdF9raWQiOiIwMTAxYjM2YTdkYTk2YjNmODAwZjZmYjg0ZGVkZjQwODg2MTVkMDcwZjE3ODUwYjYwODI1OTcwYmM0ZDQ4MjUzMGY3NDBhIiwiaG9zdCI6ImtleWJhc2UuaW8iLCJraWQiOiIwMTIwY2JmYmQ3ODA0Y2E0NmNjM2RlZjIwMTdlZWZjNWJhZGYwYjdmZWFiMzQ4ZGYwNzRjOTJmZGM2YzY5YmU0ZWEwMzBhIiwidWlkIjoiMTZkYWY2ZjgzY2MyMjhlOGIyNWY5OTc5NWM1MTk3MTkiLCJ1c2VybmFtZSI6InN0cmF5ZXIifSwibWVya2xlX3Jvb3QiOnsiY3RpbWUiOjE1MDcyMDUyOTUsImhhc2giOiI2NjEyYTg4OWRjOTM1NzNkYzRmMzVhZGU2OGQzMTdhMTNmYmY3YzcwNzAzNzYxMTMzODUwNjZmM2YxNTY1Nzg5ZDk1NTYzOWVkZWY3N2M4ZDNlMTA3MTFjY2YxMzY0MGEzMzI4NDVlM2ViOGJhY2M5MWU0OWE0YTM0NmJiZWY5ZSIsImhhc2hfbWV0YSI6IjI2ODdmZjRjOWU5NzE2Y2Y1NzFjNjQ2NjQxNjFjNzllZjc4NDE3M2FmY2IxNjc3YTU0NTc4ZDc2MzJiZDdhMzYiLCJzZXFubyI6MTUxMTY5NX0sInNlcnZpY2UiOnsiaG9zdG5hbWUiOiJncnVuZXdhbGR0LmRlIiwicHJvdG9jb2wiOiJodHRwczoifSwidHlwZSI6IndlYl9zZXJ2aWNlX2JpbmRpbmciLCJ2ZXJzaW9uIjoxfSwiY2xpZW50Ijp7Im5hbWUiOiJrZXliYXNlLmlvIGdvIGNsaWVudCIsInZlcnNpb24iOiIxLjAuMzIifSwiY3RpbWUiOjE1MDcyMDUzMDksImV4cGlyZV9pbiI6NTA0NTc2MDAwLCJwcmV2IjoiNjQ4MWY5OTBhZWY0ZDhlMzNjMWJhNGE0OTAxY2VmZmMyZWM2MzNhNjNmMTNmN2FiMjA3MjU2MTYyMDJjNDEzNiIsInNlcW5vIjoxMiwidGFnIjoic2lnbmF0dXJlIn2jc2lnxEBeCiYEPKNuQAtLTbm2AHr/rHslgSL1EBurlBO4kZbFj+PAnhp7uE+pYSAeDBsDHig/Gw9wLwmqpeDtoTWRPyMGqHNpZ190eXBlIKRoYXNogqR0eXBlCKV2YWx1ZcQg/DwWr3KoXTjL/n9avct9iWR8BkANO5ZlBgGPqQe7TrujdGFnzQICp3ZlcnNpb24B
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/strayer

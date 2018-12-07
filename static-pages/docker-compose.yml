@@ -1,0 +1,13 @@
+version: "3.6"
+
+volumes:
+  nginx_lib:
+
+services:
+  static-pages:
+    build: .
+    read_only: true
+    volumes:
+      - nginx_lib:/var/lib/nginx
+    tmpfs:
+      - /run/
