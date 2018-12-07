@@ -9,6 +9,5 @@ services:
     restart: unless-stopped
     networks:
       - web
-    hostname: firefox-syncserver
     volumes:
       - /srv/docker/volumes/influxdb:/var/lib/influxdb
