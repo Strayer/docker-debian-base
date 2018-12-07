@@ -25,7 +25,7 @@ RUN set -xe; \
   venv/bin/pip install --no-cache -r requirements.txt; \
   venv/bin/pip install --no-cache psycopg2-binary; \
   venv/bin/python ./setup.py develop; \
-  sed -i "s/timeout = 30/timeout = 30\\nforwarded_allow_ips = */" syncserver.ini; \
+  sed -i "s/timeout = 30/timeout = 60\\nforwarded_allow_ips = */" syncserver.ini; \
   sed -i "s/workers = 1/workers = 2/" syncserver.ini; \
   sed -i "s;public_url = http://localhost:5000/;public_url = https://olle-orks.org/firefox-sync/;" syncserver.ini; \
   apt-get purge -y --auto-remove g++ python-dev python-pip; \
