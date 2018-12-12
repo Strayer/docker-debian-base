@@ -13,7 +13,7 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 echo "Backing up firefox-syncserver postgresql..."
-cd "$DIR/dockerfiles/firefox-syncserver"
+cd "$DIR/firefox-syncserver"
 docker-compose exec -T db \
   pg_dumpall -c -U postgres | \
   xz > "$BACKUP_TARGET_DIR/firefox-syncserver/firefox-syncserver_dump_$(date +%Y-%m-%d"_"%H_%M_%S).sql.xz"

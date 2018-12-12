@@ -36,8 +36,8 @@ fi
 
 cd "$DIR"
 
-# echo "==> Running backups"
-# ./backup-sector001.sh
+echo "==> Running backups"
+./backup-sector001.sh
 
 export ENABLE_HETZNER_REPO=1
 export APT_PROXY=http://apt-cacher-ng:3142
