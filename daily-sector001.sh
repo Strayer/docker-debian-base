@@ -47,6 +47,12 @@ cd "$DIR/debian-base"
 echo -e "###\ndebian-base\n###\n\n" >&3
 ./build.sh >&3 2>&4
 
+echo "==> Building traefik"
+cd "$DIR/../traefik-acme-dns"
+echo -e "\n\n###\ntraefik-acme-dns\n###\n\n" >&3
+compose build --force-rm --pull --no-cache >&3 2>&4
+compose up -d
+
 echo "==> Building apt-cacher-ng"
 cd "$DIR/apt-cacher-ng"
 echo -e "\n\n###\napt-cacher-ng\n###\n\n" >&3
