@@ -5,8 +5,8 @@ ARG APT_PROXY
 
 ARG WORKDIR=/usr/src/app
 
-ARG SYNCSERVER_COMMIT=d03e4ece569491edd71ab77aba8cdea7590698ad
-ARG SYNCSERVER_HASH=5697c9c00164a5d47a572d1a31dcfe1a5c284c41ff46f768c932047d5bdedf77
+ARG SYNCSERVER_COMMIT=e9b63a0871e9881a8985fe53f0c39fa79538b6e8
+ARG SYNCSERVER_HASH=9609f31dd0150932feedef147ffb5d9629711e3658325a288df125472a80c5ff
 
 WORKDIR $WORKDIR
 
@@ -30,7 +30,6 @@ RUN set -xe; \
   sed -i "s;public_url = http://localhost:5000/;public_url = https://olle-orks.org/firefox-sync/;" syncserver.ini; \
   apt-get purge -y --auto-remove g++ python-dev python-pip; \
   rm -rf /var/lib/apt/lists/*
-
 
 EXPOSE 5000
 
